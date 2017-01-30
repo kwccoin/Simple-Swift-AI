@@ -89,15 +89,19 @@ class NetworkA {
                         inputWt = thePersistedWeights[index][nIndex][prevNeuron.identifier]
                     }
                     
+                    DebugLog("dng2bef- \(inputWt) ") //dng2bef
+                    
                     if (inputWt == nil) {
-                        //DebugLog("Random assigned weights for : \(neuron.identifier) -->")
+                        DebugLog("dng2- Random assigned weights for : \(neuron.identifier) -->") //dng2
                         let randomWeight:Double = Double(arc4random_uniform(15) + 45) * 0.01
+                        DebugLog("dng3a- \(randomWeight)") // dng3a have to be up here
                         inputWt = randomWeight
                     }
                     
                     let input = InputA(neuron: prevNeuron, weight: inputWt!)
                     input.indexInLayer = prevNeuronIndex
-                    //DebugLog("\(input.neuron?.identifier) : \(randomWeight)")
+                    DebugLog("dng3b- \(input.neuron?.identifier)") //dng3b have to down here
+                    // DebugLog("dng3- \(input.neuron?.identifier) : \(randomWeight)") //dng3
                     
                     neuronInputs.append(input)
                 }
@@ -143,7 +147,7 @@ class NetworkA {
                 
                 if (theSelf.checkCompatibility(input:ioSet.input, output:ioSet.output) == false) { break }
                 
-                ///////DebugLog("setIndex : \(setIndex)")
+                // DebugLog("dng4- no setIndex but ioSetIndex : \(ioSetIndex)") //dng4 - there is no setIndex but did have ioSetIndex
                 
                 //MARK:- Forward pass
                 for (layerIndex,layer) in theSelf.layers.enumerated() {
@@ -218,7 +222,7 @@ class NetworkA {
                             
                             let newWeight = input.weight - (theSelf.learningRate * dTotalError_by_dOutputWeight)
                             
-                            //DebugLog("\(aNeuron.identifier) newWeight\(input.neuron?.identifier) : \(newWeight)")
+                            DebugLog("dng6-\(aNeuron.identifier) newWeight\(input.neuron?.identifier) : \(newWeight)") //dng6
                             
                             let inputWtDict                 = (input.neuron!.identifier,newWeight)
                             newInputWeights.append(inputWtDict)

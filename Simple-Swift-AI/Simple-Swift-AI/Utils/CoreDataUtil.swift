@@ -85,7 +85,7 @@ class CoreDataUtil {
             if let res = results.last {
                 if let arr = res as? NetworkObj {
                     
-                    //DebugLog("nObj.objectID acc : \(arr.objectID.description)")
+                    DebugLog("dng1- nObj.objectID acc : \(arr.objectID.description)") // enable by dng1
                     if let ar =  NSKeyedUnarchiver.unarchiveObject(with: arr.neurons! as Data) as? [[[String:Double]]] {
                         
                         result = ar
